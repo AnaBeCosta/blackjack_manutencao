@@ -1,50 +1,45 @@
-Blackjack
-=========
+# Blackjack
 
 Licence: [BSD](http://creativecommons.org/licenses/BSD/)
 
-A Java Blackjack game written by [David Winter](http://davidwinter.me.uk) for a University project.
+Um jogo de Blackjack em Java escrito por David Winter para um projeto universitário. [David Winter](http://davidwinter.me.uk) 
 
-For build instructions, consult the `BUILDING` file.
-
-=========================================================
-
-Alterações realizadas - Disciplina intensiva
-
-=========================================================
-
-Corrigido botão double conforme regras do jogo 
-
-Corrigido nome dos players 
-
-Adição da funcionalidade para visualizar o histórico das jogadas 
-
-Adição dos botões para reduzir o valor da aposta de 1 em 1 e 10 em 10 
-
-Adição do botão de "All In" 
-
-Ajuste do pop-up apresentado quando algum(uns) jogador(es) zera(m) seu saldo 
-
-Ajuste da funcionalidade de limpar placar 
-
-Ajuste na mensagem de aviso sobre todos os jogadores precisarem escolher um valor de aposta 
-
-Ajuste na responsividade (alguns botões ficavam ocultos) 
-
-Ajuste no botão "Deal"
-
-==========================================================
+Para instruções de compilação, consulte o arquivo BUILDING.
 
 
-Alterado cor dos textos para ser possível visualizar com qualquer cor de fundo
-Limpar dados na tela ao finalizar
-Campos da action bloqueados igualmente com as funções dos botões inferiores
-Impedir que o redimencionamento corte os valores
-Reposicionar botões para melhorar usabilidade
-Adicionar funcionalidades para configurar perfil do jogador(como implementado dois jogadores funciona para os dois)
-Modificar layout de apresentação de cartas
-Incluir resetar jogo
-Criado um segundo jogador para multiplayer
-Criado duas partes de interações de usuário que funcionam independente
-Colocado mensagens de fim de jogo
-Feito parte de jogabilidade do multiplayer ou seja um jogador continuar jogando caso o outro perca
+## Histórico de Alterações
+
+### Alterações realizadas - Disciplina intensiva
+
+#### Correções e melhorias:
+- Corrigido o botão **Double**, ajustando-o conforme as regras do jogo.
+- Corrigido o nome dos jogadores.
+- Adicionada a funcionalidade para visualizar o histórico das jogadas.
+- Adicionados botões para reduzir o valor da aposta de 1 em 1 e 10 em 10.
+- Adicionado o botão **All In**.
+- Ajustado o pop-up exibido quando um ou mais jogadores zeram o saldo.
+- Ajustada a funcionalidade de limpar o placar.
+- Corrigida a mensagem de aviso quando todos os jogadores precisam escolher um valor de aposta.
+- Melhorada a responsividade, evitando que alguns botões fiquem ocultos.
+- Ajustado o botão **Deal**.
+
+#### Outras melhorias no jogo:
+- Ajustadas as cores dos textos para garantir visibilidade em qualquer cor de fundo.
+- Limpando os dados da tela ao finalizar a rodada.
+- Campos de ação bloqueados da mesma forma que os botões inferiores.
+- Impedido o redimensionamento que cortava os valores exibidos.
+- Reposicionamento de botões para melhor usabilidade.
+- Adicionadas funcionalidades para configurar o perfil do jogador (válido para os dois jogadores).
+- Modificado o layout de apresentação das cartas.
+- Incluído um botão para reiniciar o jogo.
+- Criado um segundo jogador, permitindo modo multiplayer.
+- Dividida a interface de interação para que os jogadores possam jogar de forma independente.
+- Adicionadas mensagens de fim de jogo.
+- Implementada a jogabilidade do multiplayer, permitindo que um jogador continue jogando caso o outro perca.
+
+#### Alterações realizadas recentemente - Disciplina de Manutenção 02/2024:
+- Descrição de acordo com valores em carteira e apostado.
+- Ajustado o **Botão de Reset** para iniciar com o valor correto.
+- Adicionado arquivo pom.
+- Redução de code smells.
+- Visualização dos **code smells** pelo [SonarCloud](https://sonarcloud.io/project/issues?issueStatuses=OPEN%2CCONFIRMED&id=AnaBeCosta_blackjack_manutencao).
