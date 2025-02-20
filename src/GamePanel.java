@@ -150,9 +150,9 @@ public class GamePanel extends JPanel implements ActionListener {
 		JPanel betPanel = new JPanel();
 		betPanel.setBackground(Color.DARK_GRAY);
 
-		JLabel currentBet = new JLabel("Aposta: ");
+		JLabel currentBet = new JLabel("Saldo de Aposta: ");
 		currentBet.setForeground(Color.WHITE);
-		JLabel playerWallet = new JLabel("Saldo: ");
+		JLabel playerWallet = new JLabel("Saldo em Carteira: ");
 		playerWallet.setForeground(Color.WHITE);
 
 		betPanel.add(currentBet);
@@ -184,16 +184,19 @@ public class GamePanel extends JPanel implements ActionListener {
 	private void resetGame() {
 		dealer.setGameOver(true);
 		table.setGameOver(true);
+		
 		for (int i = 0; i < players.size(); i++) {
-			players.get(i).clearHand();
-			clearBet(i);
+			players.get(i).clearHand();     // Limpa a mão do jogador
+			players.get(i).setWallet(100.00); // Redefine o saldo do jogador para 100 igual como inicia (by Davi)
+			clearBet(i);                    // Limpa a aposta do jogador
 		}
+		
 		dealerHistory.clear();
 		updateValues();
-
+	
 		if (historyFrame != null) {
-			historyFrame.dispose(); // Fechar a janela do histórico
-			historyFrame = null; // Definir a instância como null
+			historyFrame.dispose(); // Fecha a janela do histórico
+			historyFrame = null;    // Define a instância como null
 		}
 	}
 
@@ -238,16 +241,27 @@ public class GamePanel extends JPanel implements ActionListener {
 		return button;
 	}
 
-	public void actionPerformed(ActionEvent evt) {
+	public void actionPerformed(ActionEvent evt) { 
 		String act = evt.getActionCommand();
 		Object source = evt.getSource();
-
-		int playerIndex = getPlayerIndex(source); // Obtenha o índice do jogador
-
+	//Refatorado PlayerIndex pelo Inline antes era um Método a parte o playerIndex (by Davi)
+		int playerIndex = -1;
+		for (int i = 0; i < players.size(); i++) {
+			if (hitButtons.get(i) == source || doubleButtons.get(i) == source || standButtons.get(i) == source
+					|| clearBetButtons.get(i) == source || allInButtons.get(i) == source
+					|| add1ChipButtons.get(i) == source || add5ChipButtons.get(i) == source
+					|| add10ChipButtons.get(i) == source || add25ChipButtons.get(i) == source
+					|| add100ChipButtons.get(i) == source || reduce1BetButtons.get(i) == source
+					|| reduce10BetButtons.get(i) == source) {
+				playerIndex = i;
+				break;
+			}
+		}
+	
 		if (act.equals("Deal")) {
 			if (!allPlayersHaveBet()) {
 				JOptionPane.showMessageDialog(this,
-						"Todos os jogadores devem fazer uma aposta antes de come\u00E7ar o jogo.",
+						"Todos os jogadores devem fazer uma aposta antes de começar o jogo.",
 						"Aposta insuficiente", JOptionPane.WARNING_MESSAGE);
 				return;
 			}
@@ -270,22 +284,8 @@ public class GamePanel extends JPanel implements ActionListener {
 		} else if (act.equals("Reset Game")) {
 			resetGame();
 		}
-
+	
 		updateValues();
-	}
-
-	private int getPlayerIndex(Object source) {
-		for (int i = 0; i < players.size(); i++) {
-			if (hitButtons.get(i) == source || doubleButtons.get(i) == source || standButtons.get(i) == source
-					|| clearBetButtons.get(i) == source || allInButtons.get(i) == source
-					|| add1ChipButtons.get(i) == source || add5ChipButtons.get(i) == source
-					|| add10ChipButtons.get(i) == source || add25ChipButtons.get(i) == source
-					|| add100ChipButtons.get(i) == source || reduce1BetButtons.get(i) == source
-					|| reduce10BetButtons.get(i) == source) {
-				return i;
-			}
-		}
-		return -1;
 	}
 
 	public boolean isBetEvent(String act) {
@@ -409,8 +409,8 @@ public class GamePanel extends JPanel implements ActionListener {
 			reduce10BetButtons.get(i).setEnabled(dealer.isGameOver() && player.getBet() >= 10);
 
 			// redraw bet
-			currentBetLabels.get(i).setText(Double.toString(player.getBet()));
-			playerWalletLabels.get(i).setText(Double.toString(player.getWallet()));
+			currentBetLabels.get(i).setText("Apostas: " + Double.toString(player.getBet())); //Adicionado Descrição (by Davi)
+			playerWalletLabels.get(i).setText("Carteira: " + Double.toString(player.getWallet())); //Adicionado Descrição (by Davi)
 			currentBetLabels.get(i).setForeground(colorText);
 			playerWalletLabels.get(i).setForeground(colorText);
 		}
